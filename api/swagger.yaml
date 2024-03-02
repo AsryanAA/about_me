@@ -1,0 +1,87 @@
+definitions:
+  models.WorkPlace:
+    properties:
+      begin_date:
+        type: string
+      end_date:
+        type: string
+      id:
+        type: integer
+      what_doing:
+        type: string
+      work_place:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /create:
+    post:
+      parameters:
+      - description: AuthId
+        in: path
+        name: auth_id
+        required: true
+        type: string
+      - description: PasswordWeb
+        in: path
+        name: password_web
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.WorkPlace'
+        "404":
+          description: Not Found
+      summary: Создание новой записи Место работы
+      tags:
+      - Место работы (work_place)
+  /read:
+    get:
+      parameters:
+      - description: AuthId
+        in: path
+        name: auth_id
+        required: true
+        type: string
+      - description: PasswordWeb
+        in: path
+        name: password_web
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.WorkPlace'
+        "404":
+          description: Not Found
+      summary: Чтение всех записей Места работы
+      tags:
+      - Места работы (work_places)
+  /update:
+    patch:
+      parameters:
+      - description: AuthId
+        in: path
+        name: auth_id
+        required: true
+        type: string
+      - description: PasswordWeb
+        in: path
+        name: password_web
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.WorkPlace'
+        "404":
+          description: Not Found
+      summary: Обновление записи Место работы
+      tags:
+      - Место работы (work_place)
+swagger: "2.0"
