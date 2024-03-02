@@ -4,6 +4,7 @@ import (
 	docs "about_me/api"
 	"about_me/internal/config"
 	"about_me/internal/http-server/handlers"
+	"about_me/internal/http-server/view"
 	"about_me/internal/lib/logger/sl"
 	"about_me/internal/storage/sqlite"
 	"fmt"
@@ -67,6 +68,13 @@ func main() {
 
 	// use ginSwagger middleware to serve the API docs
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	router.LoadHTMLGlob("templates/*.html")
+	router.Static("/view/css", "templates/css")
+
+	pages := router.Group("view")
+	{
+		pages.GET("/home_page", view.ReadWorkPlaces(storage))
+	}
 
 	log.Info("starting server", slog.String("on address & port", fmt.Sprintf("%s:%d", cfg.Address, cfg.Port)))
 
