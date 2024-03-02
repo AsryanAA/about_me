@@ -1,0 +1,21 @@
+{{ template "header.html" }}
+    <table border='1'>
+        <caption>Хронология моего опыта работы</caption>
+        <tr>
+            <th>Идентификатор</th>
+            <th>Место работы</th>
+            <th>Начало работы</th>
+            <th>Окончание работы</th>
+            <th>Что делал?</th>
+        </tr>
+        {{ range .data }}
+            <tr>
+                <td>{{ .Id }}</td>
+                <td>{{ .WorkPlace }}</td>
+                <td>{{ .BeginDate }}</td>
+                <td>{{ .EndDate }}</td>
+                <td>{{ .WhatDoing }}<a href='http://localhost:8016/view/home_page/{{ .Id }}'>Подробнее</a></td>
+            </tr>
+        {{ end }}
+    </table>
+{{ template "footer.html" }}
